@@ -1,0 +1,122 @@
+openapi: 3.0.0
+info:
+  title: auth
+  version: '1.0'
+  contact:
+    name: Joe Furfaro
+    url: joefurfaro.ca
+    email: joe@dipole.app
+servers:
+  - url: 'http://localhost:3000'
+    description: api
+paths:
+  /host:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-host
+      description: Get a list of all hosts.
+      parameters:
+        - schema:
+            type: string
+          in: query
+components:
+  schemas:
+    Host:
+      title: Host
+      type: object
+      description: Models a single voting session host.
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        website:
+          type: string
+        voters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Voter'
+        max_voters:
+          type: integer
+        last_billed:
+          type: string
+        rate_per_voter:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+        secret:
+          type: string
+    Voter:
+      title: Voter
+      type: object
+      description: Models a single voter belonging to a single Host.
+      properties:
+        id:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+    Session:
+      title: VotingSessionTemplate
+      type: object
+      description: Models the skeleton for creating a voting session.
+      properties:
+        id:
+          type: string
+        host:
+          type: string
+        topics:
+          type: string
+        voters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Voter'
+    Topic:
+      title: TopicTemplate
+      type: object
+      description: Models a template for creating a single Topic.
+      properties:
+        id:
+          type: string
+        text:
+          type: string
+        options:
+          type: array
+          items:
+            type: string
+    Vote:
+      title: Vote
+      type: object
+      description: Models a single vote.
+      properties:
+        id:
+          type: string
+        voter:
+          $ref: '#/components/schemas/Voter'
+        value:
+          type: string
+    Server:
+      title: VotingServer
+      type: object
+      description: Models a single Voting server.
+      properties:
+        id:
+          type: string
+        path:
+          type: string
+        busy:
+          type: boolean
+          default: 'false'
+        name:
+          type: string
