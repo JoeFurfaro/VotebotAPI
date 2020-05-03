@@ -10,17 +10,138 @@ servers:
   - url: 'http://localhost:3000'
     description: api
 paths:
-  /host:
+  /hosts:
     get:
       summary: Your GET endpoint
-      tags: []
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Host'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
       operationId: get-host
       description: Get a list of all hosts.
       parameters:
         - schema:
             type: string
           in: query
+          name: secret
+          required: true
+        - schema:
+            type: number
+          in: query
+          name: limit
+          required: true
+    parameters: []
+    post:
+      summary: ''
+      operationId: post-hosts
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Host'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+      description: Add a new host.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: secret
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Host'
+  '/hosts/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Host'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      operationId: get-hosts-id
+      description: Get a host by its ID
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: secret
+          required: true
+    put:
+      summary: ''
+      operationId: put-hosts-id
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Host'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      description: Update a host
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: secret
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Host'
+    delete:
+      summary: ''
+      operationId: delete-hosts-id
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      description: Delete a host and their server.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: secret
 components:
   schemas:
     Host:
@@ -31,10 +152,6 @@ components:
         id:
           type: string
         name:
-          type: string
-        email:
-          type: string
-        website:
           type: string
         voters:
           type: array
@@ -52,6 +169,14 @@ components:
           type: string
         secret:
           type: string
+        contact_name:
+          type: string
+        contact_email:
+          type: string
+        contact_phone:
+          type: string
+        server:
+          $ref: '#/components/schemas/Server'
     Voter:
       title: Voter
       type: object
@@ -118,5 +243,19 @@ components:
         busy:
           type: boolean
           default: 'false'
-        name:
+    Superuser:
+      title: Superuser
+      type: object
+      properties:
+        id:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+        secret:
           type: string
