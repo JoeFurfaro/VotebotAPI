@@ -63,7 +63,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Host'
+              type: object
+              properties:
+                host:
+                  $ref: '#/components/schemas/Host'
+                server_port:
+                  type: integer
   '/hosts/{id}':
     parameters:
       - schema:
@@ -228,7 +233,7 @@ paths:
         '404':
           description: Not Found
       operationId: get-sessions-id
-      description: Get a session by its ID
+      description: Get a session template by its ID
       parameters:
         - schema:
             type: string
@@ -496,6 +501,149 @@ paths:
           in: query
           name: secret
           required: true
+  /voters:
+    post:
+      summary: ''
+      operationId: post-voters
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Voter'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      description: Add a new voter to a host
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: secret
+          required: true
+  '/voters/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Voter'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      operationId: get-voters-id
+      description: Get a voter by their ID
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: secret
+          required: true
+    put:
+      summary: ''
+      operationId: put-voters-id
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Voter'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      description: Update a voter
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: secret
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Voter'
+    delete:
+      summary: ''
+      operationId: delete-voters-id
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      description: Delete a voter
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: secret
+          required: true
+  /runserver:
+    post:
+      summary: ''
+      operationId: post-runserver
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Server'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '503':
+          description: Service Unavailable
+      description: "Run a new voting session on a host's server"
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: secret
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                server:
+                  $ref: '#/components/schemas/Server'
+                session:
+                  $ref: '#/components/schemas/Session'
 components:
   schemas:
     Host:
@@ -534,7 +682,7 @@ components:
         results:
           type: array
           items:
-            $ref: '#/components/schemas/SessionResults'
+            $ref: '#/components/schemas/Results'
     Voter:
       title: Voter
       type: object
@@ -549,6 +697,10 @@ components:
         email:
           type: string
         phone:
+          type: string
+        host:
+          $ref: '#/components/schemas/Host'
+        secret:
           type: string
     Session:
       title: Session
@@ -566,7 +718,7 @@ components:
           items:
             $ref: '#/components/schemas/Voter'
     Topic:
-      title: TopicTemplate
+      title: Topic
       type: object
       description: Models a template for creating a single Topic.
       properties:
@@ -593,6 +745,8 @@ components:
           $ref: '#/components/schemas/Voter'
         value:
           type: string
+        time_placed:
+          type: string
     Server:
       title: Server
       type: object
@@ -612,7 +766,7 @@ components:
         process_id:
           type: string
         port:
-          type: string
+          type: integer
     Superuser:
       title: Superuser
       type: object
@@ -629,6 +783,7 @@ components:
           type: string
         secret:
           type: string
+      description: Models a single superuser
     Results:
       title: Results
       type: object
@@ -640,9 +795,21 @@ components:
           type: string
         end_time:
           type: string
-        topics:
+        topic_results:
           type: array
           items:
-            $ref: '#/components/schemas/Topic'
+            $ref: '#/components/schemas/TopicResults'
         id:
           type: string
+    TopicResults:
+      title: TopicResults
+      type: object
+      properties:
+        id:
+          type: string
+        topic:
+          $ref: '#/components/schemas/Topic'
+        votes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vote'
