@@ -22,22 +22,15 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Host'
-        '400':
-          description: Bad Request
         '401':
           description: Unauthorized
       operationId: get-host
-      description: Get a list of all hosts.
+      description: Get a list of all hosts
       parameters:
         - schema:
             type: string
           in: query
           name: secret
-          required: true
-        - schema:
-            type: number
-          in: query
-          name: limit
           required: true
     parameters: []
     post:
@@ -55,7 +48,7 @@ paths:
           description: Bad Request
         '401':
           description: Unauthorized
-      description: Add a new host.
+      description: Add a new host and assign them a server
       parameters:
         - schema:
             type: string
@@ -136,12 +129,260 @@ paths:
           description: Unauthorized
         '404':
           description: Not Found
-      description: Delete a host and their server.
+      description: Delete a host and their server
       parameters:
         - schema:
             type: string
           in: query
           name: secret
+          required: true
+  /sessions:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Server'
+        '401':
+          description: Unauthorized
+      operationId: get-sessions
+      description: 'Get a list of all servers that are running, along with their associated voting sessions'
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: secret
+          required: true
+    post:
+      summary: ''
+      operationId: post-sessions
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Session'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+      description: Create a new voting session template
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Session'
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: secret
+          required: true
+  '/sessions/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Session'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      operationId: get-sessions-id
+      description: Get a session by its ID
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: secret
+          required: true
+    put:
+      summary: ''
+      operationId: put-sessions-id
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      description: Update a specific session
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: secret
+          required: true
+    delete:
+      summary: ''
+      operationId: delete-sessions-id
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      description: Delete a voting session template
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: secret
+          required: true
+  /auth/host:
+    post:
+      summary: ''
+      operationId: post-auth-host
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Host'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      description: Authenticate a host
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+        description: ''
+    parameters: []
+  /auth/superuser:
+    post:
+      summary: ''
+      operationId: post-auth-login-superuser
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Superuser'
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+      description: Authenticate a superuser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+    parameters: []
+  /servers:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Server'
+        '401':
+          description: Unauthorized
+      operationId: get-servers
+      description: Get a list of all servers and their statuses
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: secret
+          required: true
+  '/servers/{id}':
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Server'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      operationId: get-servers-id
+      description: Get a server byt its ID
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: secret
+          required: true
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    put:
+      summary: ''
+      operationId: put-servers-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Server'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      description: Update a server
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: secret
+          required: true
 components:
   schemas:
     Host:
@@ -177,6 +418,10 @@ components:
           type: string
         server:
           $ref: '#/components/schemas/Server'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SessionResults'
     Voter:
       title: Voter
       type: object
@@ -193,7 +438,7 @@ components:
         phone:
           type: string
     Session:
-      title: VotingSessionTemplate
+      title: Session
       type: object
       description: Models the skeleton for creating a voting session.
       properties:
@@ -220,6 +465,10 @@ components:
           type: array
           items:
             type: string
+        votes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vote'
     Vote:
       title: Vote
       type: object
@@ -232,7 +481,7 @@ components:
         value:
           type: string
     Server:
-      title: VotingServer
+      title: Server
       type: object
       description: Models a single Voting server.
       properties:
@@ -240,9 +489,17 @@ components:
           type: string
         path:
           type: string
-        busy:
+        running:
           type: boolean
           default: 'false'
+        owner:
+          $ref: '#/components/schemas/Host'
+        session:
+          $ref: '#/components/schemas/Session'
+        process_id:
+          type: string
+        port:
+          type: string
     Superuser:
       title: Superuser
       type: object
@@ -258,4 +515,21 @@ components:
         password:
           type: string
         secret:
+          type: string
+    Results:
+      title: Results
+      type: object
+      description: Models the results of a voting session.
+      properties:
+        session:
+          $ref: '#/components/schemas/Session'
+        start_time:
+          type: string
+        end_time:
+          type: string
+        topics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Topic'
+        id:
           type: string
