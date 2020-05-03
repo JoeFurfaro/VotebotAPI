@@ -24,6 +24,8 @@ paths:
                   $ref: '#/components/schemas/Host'
         '401':
           description: Unauthorized
+        '403':
+          description: Forbidden
       operationId: get-host
       description: Get a list of all hosts
       parameters:
@@ -48,6 +50,8 @@ paths:
           description: Bad Request
         '401':
           description: Unauthorized
+        '403':
+          description: Forbidden
       description: Add a new host and assign them a server
       parameters:
         - schema:
@@ -80,6 +84,8 @@ paths:
                 $ref: '#/components/schemas/Host'
         '401':
           description: Unauthorized
+        '403':
+          description: Forbidden
         '404':
           description: Not Found
       operationId: get-hosts-id
@@ -105,6 +111,8 @@ paths:
           description: Bad Request
         '401':
           description: Unauthorized
+        '403':
+          description: Forbidden
         '404':
           description: Not Found
       description: Update a host
@@ -127,6 +135,8 @@ paths:
           description: OK
         '401':
           description: Unauthorized
+        '403':
+          description: Forbidden
         '404':
           description: Not Found
       description: Delete a host and their server
@@ -150,8 +160,13 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Server'
+        '201':
+          description: Created
+          headers: {}
         '401':
           description: Unauthorized
+        '403':
+          description: Forbidden
       operationId: get-sessions
       description: 'Get a list of all servers that are running, along with their associated voting sessions'
       parameters:
@@ -175,6 +190,8 @@ paths:
           description: Bad Request
         '401':
           description: Unauthorized
+        '403':
+          description: Forbidden
       description: Create a new voting session template
       requestBody:
         content:
@@ -206,6 +223,8 @@ paths:
                 $ref: '#/components/schemas/Session'
         '401':
           description: Unauthorized
+        '403':
+          description: Forbidden
         '404':
           description: Not Found
       operationId: get-sessions-id
@@ -224,6 +243,8 @@ paths:
           description: OK
         '401':
           description: Unauthorized
+        '403':
+          description: Forbidden
         '404':
           description: Not Found
       description: Update a specific session
@@ -241,6 +262,8 @@ paths:
           description: OK
         '401':
           description: Unauthorized
+        '403':
+          description: Forbidden
         '404':
           description: Not Found
       description: Delete a voting session template
@@ -262,6 +285,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Host'
+        '400':
+          description: Bad Request
         '401':
           description: Unauthorized
         '404':
@@ -293,6 +318,13 @@ paths:
                 $ref: '#/components/schemas/Superuser'
         '400':
           description: Bad Request
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
         '404':
           description: Not Found
       description: Authenticate a superuser
@@ -323,6 +355,8 @@ paths:
                   $ref: '#/components/schemas/Server'
         '401':
           description: Unauthorized
+        '403':
+          description: Forbidden
       operationId: get-servers
       description: Get a list of all servers and their statuses
       parameters:
@@ -344,10 +378,12 @@ paths:
                 $ref: '#/components/schemas/Server'
         '401':
           description: Unauthorized
+        '403':
+          description: Forbidden
         '404':
           description: Not Found
       operationId: get-servers-id
-      description: Get a server byt its ID
+      description: Get a server by its ID
       parameters:
         - schema:
             type: string
@@ -374,9 +410,35 @@ paths:
           description: Bad Request
         '401':
           description: Unauthorized
+        '403':
+          description: Forbidden
         '404':
           description: Not Found
       description: Update a server
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: secret
+          required: true
+  /results:
+    post:
+      summary: ''
+      operationId: post-results
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Results'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      description: Add a new voting session results object
       parameters:
         - schema:
             type: string
