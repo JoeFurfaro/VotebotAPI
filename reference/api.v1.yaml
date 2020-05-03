@@ -445,6 +445,57 @@ paths:
           in: query
           name: secret
           required: true
+  '/results/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Results'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      operationId: get-results-id
+      description: Get a single voting session results object
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: secret
+          required: true
+    delete:
+      summary: ''
+      operationId: delete-results-id
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      description: Delete a voting session results object
+      requestBody: {}
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: secret
+          required: true
 components:
   schemas:
     Host:
