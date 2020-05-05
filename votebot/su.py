@@ -11,16 +11,11 @@ action_choices = [
     "delsu",
     "editsu",
     "su",
+    "addhost",
+    "delhost",
+    "edithost",
+    "hosts"
 ]
-
-# parser.add_argument("-q", "--quiet", help="Silences program output", action="store_true")
-# parser.add_argument("-a", "--add", help="Object adding mode", action="store_true")
-# parser.add_argument("-r", "--remove", help="Object removing mode", action="store_true")
-# parser.add_argument("-l", "--list", help="List object mode", action="store_true")
-# parser.add_argument("-e", "--edit", help="Object editing mode", nargs="*")
-# parser.add_argument("-g", "--group", help="Identifies the name of a group", nargs=1)
-# parser.add_argument("-u", "--user", help="Identifies the name of a user", nargs=1)
-# parser.add_argument("-p", "--permplug", help="Identifies a permissions string or a plugin name", nargs=1)
 
 parser.add_argument("action", help="The VBSU action to run", choices=action_choices)
 parser.add_argument("--id", help="Specifies an item ID", nargs=1)
@@ -32,6 +27,8 @@ config = configparser.ConfigParser()
 config.read("su.ini")
 
 url = config["general"]["url"]
+
+print()
 
 if args.root:
     secret = config["root"]["secret"]
@@ -49,6 +46,7 @@ else:
         sys.exit(0)
 
 print("Using secret: " + secret)
+print()
 
 if args.action == "addsu":
     request = {
@@ -102,3 +100,70 @@ elif args.action == "su":
             print("Showing all superusers:")
             for person in data["superusers"]:
                 print("  - " + person["username"] + " (" + person["first_name"] + " " + person["last_name"] + ")")
+
+elif args.action == "addhost":
+    request = {
+        "username": input("Username: "),
+        "password": input("Password: "),
+        "name": input("Name: "),
+        "max_voters": input("Maximum registered voters: "),
+        "contact_name": input("Contact's name: "),
+        "contact_email": input("Contact's email: "),
+        "contact_phone": input("Contact's phone #: "),
+        "server_port": input("New dedicated server port: "),
+    }
+    response = requests.post(url + "/api/hosts?secret=" + secret, data=request)
+    if response.status_code == 200:
+        print("Host created")
+    elif response.status_code == 400:
+        resp = response.json()
+        for err in resp["errors"]:
+            print(err + ":" + resp["errors"][err][0])
+
+elif args.action == "delhost":
+    username = input("Username to delete: ")
+    response = requests.delete(url + "/api/hosts/" + username + "?secret=" + secret)
+    if response.status_code == 200:
+        print("Host deleted")
+    elif response.status_code == 404:
+        print("Host not found")
+
+elif args.action == "edithost":
+    username = input("Username to edit: ")
+    request = {
+        "password": input("Password: "),
+        "name": input("Name: "),
+        "max_voters": input("Maximum registered voters: "),
+        "contact_name": input("Contact's name: "),
+        "contact_email": input("Contact's email: "),
+        "contact_phone": input("Contact's phone #: "),
+    }
+    response = requests.put(url + "/api/hosts/" + username + "?secret=" + secret, data=request)
+    if response.status_code == 200:
+        print("Host updated")
+    elif response.status_code == 404:
+        print("Host not found")
+
+elif args.action == "hosts":
+    if args.id:
+        response = requests.get(url + "/api/hosts/" + args.id[0] + "?secret=" + secret)
+        if response.status_code == 200:
+            data = response.json()
+            print("Showing details for host " + args.id[0] + ":")
+            print("  - Username: " + data["host"]["username"])
+            print("  - Name: " + data["host"]["name"])
+            print("  - Maximum registered voters: " + str(data["host"]["max_voters"]))
+            print("  - Contact's name: " + data["host"]["contact_name"])
+            print("  - Contact's email: " + data["host"]["contact_email"])
+            print("  - Contact's phone #: " + data["host"]["contact_phone"])
+        elif response.status_code == 404:
+            print("Host not found")
+    else:
+        response = requests.get(url + "/api/hosts?secret=" + secret)
+        if response.status_code == 200:
+            data = response.json()
+            print("Listing all hosts:")
+            for host in data["hosts"]:
+                print("  - " + host["username"] + " (" + host["name"] + ")")
+
+print()

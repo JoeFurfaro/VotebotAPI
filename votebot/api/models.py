@@ -23,23 +23,19 @@ class Host(models.Model):
     name = models.CharField(max_length=50)
     voters = models.ManyToManyField("Voter")
     max_voters = models.IntegerField()
-    last_billed = models.DateField()
-    rate_per_voter = models.FloatField()
     password = models.CharField(max_length=50)
     secret = models.CharField(max_length=300)
     contact_name = models.CharField(max_length=50)
     contact_email = models.EmailField()
     contact_phone = models.CharField(max_length=50)
-    voting_server = models.ForeignKey("Server", on_delete=models.CASCADE)
+    voting_server = models.ForeignKey("Server", on_delete=models.CASCADE, null=True)
     results = models.ManyToManyField("Results")
 
     def export(self, include_secret=False):
         exp = {
-            "username": self.max_voters,
+            "username": self.username,
             "name": self.name,
-            "last_billed": self.last_billed,
             "max_voters": self.max_voters,
-            "rate_per_voter": self.rate_per_voter,
             "contact_name": self.contact_name,
             "contact_email": self.contact_email,
             "contact_phone": self.contact_phone,

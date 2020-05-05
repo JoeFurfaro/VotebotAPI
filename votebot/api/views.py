@@ -25,14 +25,18 @@ def resp(status, data, status_code="200"):
     data["status"] = status
     return JsonResponse(data, status=status_code)
 
-def authenticate(request, allowed):
+def authenticate(request, allowed, host_usernames=[]):
     if not "secret" in request.GET:
         return responses.ERROR_MISSING_SECRET
     user = verify_secret(request.GET["secret"])
     if user == None:
         return responses.ERROR_INVALID_AUTH
-    if type(user) not in allowed and user != "ROOT":
-        return responses.ERROR_NOT_AUTHORIZED
+    if type(user) == Host:
+        if user.username not in host_usernames:
+            return responses.ERROR_NOT_AUTHORIZED
+    else:
+        if type(user) not in allowed and user != "ROOT":
+            return responses.ERROR_NOT_AUTHORIZED
     return True
 
 def verify_secret(secret):
@@ -73,7 +77,6 @@ def view_superusers(request):
         elif request.method == "POST":
             ser = SuperuserPOSTSerializer(data=request.data)
             if ser.is_valid():
-                print("VALID")
                 new = ser.save()
                 new.secret = generate_secret()
                 new.save()
@@ -100,5 +103,49 @@ def view_superusers_id(request, id):
         elif request.method == "DELETE":
             match[0].delete()
             return resp("SUCCESS_SUPERUSER_DELETE", {})
+    else:
+        return auth
+
+@api_view(['GET', 'POST'])
+def view_hosts(request):
+    auth = authenticate(request, [Superuser])
+    if auth == True:
+        if request.method == "GET":
+            return resp("SUCCESS_HOSTS_GET", {"hosts": [host.export() for host in Host.objects.all()]})
+        elif request.method == "POST":
+            print(request.data)
+            ser = HostPOSTSerializer(data=request.data)
+            server_port = request.data["server_port"]
+            try:
+                x = int(server_port)
+            except:
+                return responses.ERROR_BAD_POST_DATA({"server_port": ["port must be an integer"]})
+            if ser.is_valid():
+                new = ser.save()
+                new.secret = generate_secret()
+                new.save()
+                return resp("SUCCESS_HOST_POST", {"host": new.export(include_secret=True)})
+            return responses.ERROR_BAD_POST_DATA(ser.errors)
+    else:
+        return auth
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def view_hosts_id(request, id):
+    auth = authenticate(request, [Superuser], [id])
+    if auth == True:
+        match = Host.objects.filter(username=id)
+        if not match:
+            return responses.ERROR_RESOURCE_NOT_FOUND
+        if request.method == "GET":
+            return resp("SUCCESS_HOST_GET", {"host": match[0].export()})
+        elif request.method == "PUT":
+            ser = HostPUTSerializer(match[0], data=request.data)
+            if ser.is_valid():
+                obj = ser.save()
+                return resp("SUCCESS_HOST_PUT", {"host": obj.export()})
+            return responses.ERROR_BAD_PUT_DATA(ser.errors)
+        elif request.method == "DELETE":
+            match[0].delete()
+            return resp("SUCCESS_HOST_DELETE", {})
     else:
         return auth
