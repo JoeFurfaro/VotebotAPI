@@ -1,7 +1,12 @@
 from api.models import *
 from rest_framework import serializers
 
-class SuperuserSerializer(serializers.HyperlinkedModelSerializer):
+class SuperuserPOSTSerializer(serializers.ModelSerializer):
     class Meta:
         model = Superuser
-        fields = ['first_name', 'last_name', 'username']
+        fields = ['username', 'first_name', 'last_name', 'password']
+
+class SuperuserPUTSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Superuser
+        fields = ['first_name', 'last_name', 'password']

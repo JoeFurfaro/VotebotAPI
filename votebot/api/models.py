@@ -1,19 +1,17 @@
 from django.db import models
 
 class Superuser(models.Model):
-    id = models.CharField(max_length=36, primary_key=True)
+    username = models.CharField(max_length=30, primary_key=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    username = models.CharField(max_length=30)
     password = models.CharField(max_length=50)
     secret = models.CharField(max_length=300)
 
     def export(self, include_secret=False):
         exp = {
-            "id": self.id,
+            "username": self.username,
             "first_name": self.first_name,
             "last_name": self.last_name,
-            "username": self.username,
         }
         if include_secret:
             exp["secret"] = self.secret
@@ -21,30 +19,45 @@ class Superuser(models.Model):
         return exp
 
 class Host(models.Model):
-    id = models.CharField(max_length=36, primary_key=True)
+    username = models.CharField(max_length=30, primary_key=True)
     name = models.CharField(max_length=50)
     voters = models.ManyToManyField("Voter")
     max_voters = models.IntegerField()
     last_billed = models.DateField()
     rate_per_voter = models.FloatField()
-    username = models.CharField(max_length=30)
     password = models.CharField(max_length=50)
     secret = models.CharField(max_length=300)
     contact_name = models.CharField(max_length=50)
-    contact_email = models.CharField(max_length=320)
+    contact_email = models.EmailField()
     contact_phone = models.CharField(max_length=50)
     voting_server = models.ForeignKey("Server", on_delete=models.CASCADE)
     results = models.ManyToManyField("Results")
+
+    def export(self, include_secret=False):
+        exp = {
+            "username": self.max_voters,
+            "name": self.name,
+            "last_billed": self.last_billed,
+            "max_voters": self.max_voters,
+            "rate_per_voter": self.rate_per_voter,
+            "contact_name": self.contact_name,
+            "contact_email": self.contact_email,
+            "contact_phone": self.contact_phone,
+        }
+        if include_secret:
+            exp["secret"] = self.secret
+
+        return exp
+
 
 class Voter(models.Model):
     id = models.CharField(max_length=36, primary_key=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    email = models.CharField(max_length=320)
+    email = models.EmailField()
     phone = models.CharField(max_length=11)
     secret = models.CharField(max_length=8)
     parent_host = models.ForeignKey("Host", on_delete=models.CASCADE)
-
 
 class Server(models.Model):
     id = models.CharField(max_length=36, primary_key=True)

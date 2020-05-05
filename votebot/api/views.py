@@ -1,38 +1,104 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import JsonResponse
+from django.conf import settings
 
 from api.models import *
+from api import responses
 
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+import random
+
 from api.serializers import *
 
+def generate_secret(length=64):
+    possible_chars = "abcdefghijklmnopqrstuvwxyz0123456789"
+    secret = ""
+    for i in range(length):
+        secret += possible_chars[random.randrange(0, len(possible_chars))]
+    return secret
+
+def resp(status, data, status_code="200"):
+    data["status"] = status
+    return JsonResponse(data, status=status_code)
+
+def authenticate(request, allowed):
+    if not "secret" in request.GET:
+        return responses.ERROR_MISSING_SECRET
+    user = verify_secret(request.GET["secret"])
+    if user == None:
+        return responses.ERROR_INVALID_AUTH
+    if type(user) not in allowed and user != "ROOT":
+        return responses.ERROR_NOT_AUTHORIZED
+    return True
+
 def verify_secret(secret):
+    if secret == settings.ROOT_SECRET:
+        return "ROOT"
     host_match = Host.objects.filter(secret=secret)
-    if len(host_match) == 1:
+    if host_match:
         return host_match[0]
     superuser_match = Superuser.objects.filter(secret=secret)
-    if len(superuser_match) == 1:
+    if superuser_match:
         return superuser_match[0]
     return None
 
 @api_view(['POST'])
 def view_auth_superuser(request):
     if "username" in request.data and "password" in request.data:
-        match = Superuser.objects.filter(username__iexact=request.data["username"], password=request.data["password"])
-        if len(match) == 1:
-            return JsonResponse({"status": "SUCCESS_SUPERUSER_AUTHENTICATED", "superuser": match[0].export(include_secret=True)})
-        return JsonResponse({"status": "ERROR_INVALID_SUPERUSER_AUTH", "message": "Invalid superuser username or password"}, status="401")
-    return JsonResponse({"status": "ERROR_BAD_SUPERUSER_LOGIN_REQUEST", "message": "Request must include username and password fields"}, status="400")
+        match = Superuser.objects.filter(username=request.data["username"], password=request.data["password"])
+        if match:
+            return resp("SUCCESS_SUPERUSER_AUTHENTICATED", {"superuser": match[0].export(include_secret=True)})
+        return responses.ERROR_INVALID_SUPERUSER_AUTH
+    return responses.ERROR_BAD_SUPERUSER_LOGIN_REQUEST
 
 @api_view(['POST'])
 def view_auth_host(request):
     if "username" in request.data and "password" in request.data:
-        match = Host.objects.filter(username__iexact=request.data["username"], password=request.data["password"])
-        if len(match) == 1:
-            return JsonResponse({"status": "SUCCESS_HOST_AUTHENTICATED", "host": match[0].export(include_secret=True)})
-        return JsonResponse({"status": "ERROR_INVALID_HOST_AUTH", "message": "Invalid host username or password"}, status="401")
-    return JsonResponse({"status": "ERROR_BAD_HOST_LOGIN_REQUEST", "message": "Request must include username and password fields"}, status="400")
+        match = Host.objects.filter(username=request.data["username"], password=request.data["password"])
+        if match:
+            return resp("SUCCESS_HOST_AUTHENTICATED", {"host": match[0].export(include_secret=True)})
+        return responses.ERROR_INVALID_HOST_AUTH
+    return responses.ERROR_BAD_HOST_LOGIN_REQUEST
+
+@api_view(['GET', 'POST'])
+def view_superusers(request):
+    auth = authenticate(request, [Superuser])
+    if auth == True:
+        if request.method == "GET":
+            return resp("SUCCESS_SUPERUSERS_GET", {"superusers": [su.export() for su in Superuser.objects.all()]})
+        elif request.method == "POST":
+            ser = SuperuserPOSTSerializer(data=request.data)
+            if ser.is_valid():
+                print("VALID")
+                new = ser.save()
+                new.secret = generate_secret()
+                new.save()
+                return resp("SUCCESS_SUPERUSER_POST", {"superuser": new.export(include_secret=True)})
+            return responses.ERROR_BAD_POST_DATA(ser.errors)
+    else:
+        return auth
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def view_superusers_id(request, id):
+    auth = authenticate(request, [Superuser])
+    if auth == True:
+        match = Superuser.objects.filter(username=id)
+        if not match:
+            return responses.ERROR_RESOURCE_NOT_FOUND
+        if request.method == "GET":
+            return resp("SUCCESS_SUPERUSER_GET", {"superuser": match[0].export()})
+        elif request.method == "PUT":
+            ser = SuperuserPUTSerializer(match[0], data=request.data)
+            if ser.is_valid():
+                obj = ser.save()
+                return resp("SUCCESS_SUPERUSER_PUT", {"superuser": obj.export()})
+            return responses.ERROR_BAD_PUT_DATA(ser.errors)
+        elif request.method == "DELETE":
+            match[0].delete()
+            return resp("SUCCESS_SUPERUSER_DELETE", {})
+    else:
+        return auth
