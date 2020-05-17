@@ -11,6 +11,10 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 import random
+import uuid
+import pathlib
+import shutil
+import configparser
 
 from api.serializers import *
 
@@ -117,12 +121,18 @@ def view_hosts(request):
             ser = HostPOSTSerializer(data=request.data)
             server_port = request.data["server_port"]
             try:
-                x = int(server_port)
+                server_port = str(int(server_port))
             except:
                 return responses.ERROR_BAD_POST_DATA({"server_port": ["port must be an integer"]})
             if ser.is_valid():
                 new = ser.save()
                 new.secret = generate_secret()
+                new.save()
+                root_path = str(pathlib.Path().absolute())
+                server_path = root_path + "/servers/" + new.username
+                shutil.copytree(root_path + "/server_template", server_path)
+                new_server = Server.objects.create(id=uuid.uuid4(), path=server_path, owner=new, port=server_port)
+                new.voting_server = new_server
                 new.save()
                 return resp("SUCCESS_HOST_POST", {"host": new.export(include_secret=True)})
             return responses.ERROR_BAD_POST_DATA(ser.errors)
@@ -145,6 +155,8 @@ def view_hosts_id(request, id):
                 return resp("SUCCESS_HOST_PUT", {"host": obj.export()})
             return responses.ERROR_BAD_PUT_DATA(ser.errors)
         elif request.method == "DELETE":
+            if match[0].voting_server:
+                shutil.rmtree(match[0].voting_server.path)
             match[0].delete()
             return resp("SUCCESS_HOST_DELETE", {})
     else:

@@ -1,0 +1,9 @@
+(electron) The default value of app.allowRendererProcessReuse is deprecated, it is currently "false".  It will change to be "true" in Electron 9.  For more information please check https://github.com/electron/electron/issues/18397
+12:16:14.247 › Checking for update
+(node:4277) DeprecationWarning: Passing functions, DOM objects and other non-cloneable JavaScript objects to IPC methods is deprecated and will throw an exception beginning with Electron 9.
+(node:4277) DeprecationWarning: Passing functions, DOM objects and other non-cloneable JavaScript objects to IPC methods is deprecated and will throw an exception beginning with Electron 9.
+(node:4277) DeprecationWarning: Passing functions, DOM objects and other non-cloneable JavaScript objects to IPC methods is deprecated and will throw an exception beginning with Electron 9.
+(node:4277) DeprecationWarning: Passing functions, DOM objects and other non-cloneable JavaScript objects to IPC methods is deprecated and will throw an exception beginning with Electron 9.
+12:16:15.267 › Update for version 1.11.0 is not available (latest version: 1.11.0, downgrade is allowed).
+(node:4277) DeprecationWarning: Passing functions, DOM objects and other non-cloneable JavaScript objects to IPC methods is deprecated and will throw an exception beginning with Electron 9.
+(node:4277) DeprecationWarning: Passing functions, DOM objects and other non-cloneable JavaScript objects to IPC methods is deprecated and will throw an exception beginning with Electron 9.

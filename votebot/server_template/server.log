@@ -1,0 +1,217 @@
+2020-04-26 18:39:14,558 INFO: [SERVER] Loaded server configuration file successfully
+2020-04-26 18:39:14,562 INFO: [foo] Plugin started successfully!
+2020-04-26 18:39:14,563 INFO: [SERVER] Starting WebSocket server on localhost:8765
+2020-04-26 18:39:14,564 INFO: [sessions] Killed 0 expired sessions
+2020-04-26 18:39:19,569 INFO: [sessions] Killed 0 expired sessions
+2020-04-26 18:39:24,575 INFO: [sessions] Killed 0 expired sessions
+2020-04-26 18:39:29,581 INFO: [sessions] Killed 0 expired sessions
+2020-04-26 18:39:34,583 INFO: [sessions] Killed 0 expired sessions
+2020-04-26 18:39:38,667 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-04-26 18:39:56,421 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 01:48:02,707 INFO: [SERVER] Loaded server configuration file successfully
+2020-05-03 01:48:02,713 INFO: [foo] Plugin started successfully!
+2020-05-03 01:48:02,714 INFO: [SERVER] Starting WebSocket server on localhost:8765
+2020-05-03 01:50:34,433 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 01:51:12,504 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 01:51:12,522 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 01:52:20,236 INFO: [SERVER] Loaded server configuration file successfully
+2020-05-03 01:52:20,239 INFO: [foo] Plugin started successfully!
+2020-05-03 01:52:20,240 INFO: [SERVER] Starting WebSocket server on localhost:8765
+2020-05-03 01:52:24,903 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 01:52:47,009 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 01:52:47,042 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 15:37:48,905 INFO: [SERVER] Loaded server configuration file successfully
+2020-05-03 15:37:48,908 INFO: [foo] Plugin started successfully!
+2020-05-03 15:37:48,909 INFO: [SERVER] Starting WebSocket server on localhost:8765
+2020-05-03 15:42:02,051 INFO: [SERVER] Loaded server configuration file successfully
+2020-05-03 15:42:02,053 INFO: [foo] Plugin started successfully!
+2020-05-03 15:42:02,054 INFO: [SERVER] Starting WebSocket server on localhost:8765
+2020-05-03 15:43:45,220 INFO: [SERVER] Loaded server configuration file successfully
+2020-05-03 15:43:45,222 INFO: [foo] Plugin started successfully!
+2020-05-03 15:43:45,223 INFO: [SERVER] Starting WebSocket server on localhost:8765
+2020-05-03 15:43:58,578 INFO: [SERVER] Loaded server configuration file successfully
+2020-05-03 15:43:58,581 INFO: [foo] Plugin started successfully!
+2020-05-03 15:43:58,582 INFO: [SERVER] Starting WebSocket server on localhost:8765
+2020-05-03 15:44:00,062 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 15:50:07,068 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 15:50:20,291 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 15:50:30,823 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 15:50:30,902 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 15:56:14,672 INFO: [SERVER] Loaded server configuration file successfully
+2020-05-03 15:56:14,674 INFO: [foo] Plugin started successfully!
+2020-05-03 15:56:14,675 INFO: [SERVER] Starting WebSocket server on localhost:8765
+2020-05-03 15:56:16,294 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 15:56:33,126 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 15:56:33,162 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 15:56:38,993 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 15:56:39,023 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 15:56:58,048 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 15:56:58,117 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 15:57:32,634 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 15:57:32,781 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 15:57:57,310 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 15:57:57,454 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 15:57:58,085 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 15:57:58,141 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 15:59:07,039 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 16:03:44,884 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 16:03:51,099 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 16:03:51,153 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 16:10:04,538 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 16:10:04,645 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 16:10:07,725 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 16:10:07,771 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 16:10:09,585 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 16:10:09,633 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 16:10:10,565 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 16:10:10,620 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 16:10:50,919 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 16:10:51,072 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 16:10:51,678 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 16:10:51,724 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 16:10:52,810 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 16:10:52,861 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 16:10:53,457 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 16:10:53,518 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 16:10:56,874 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 16:10:56,943 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 16:11:12,456 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 16:11:12,504 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 16:11:33,201 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 16:11:33,342 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 16:11:41,376 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 16:11:41,526 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 16:12:23,098 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 16:14:29,217 INFO: [SERVER] Loaded server configuration file successfully
+2020-05-03 16:14:29,219 INFO: [foo] Plugin started successfully!
+2020-05-03 16:14:29,220 INFO: [SERVER] Starting WebSocket server on localhost:8765
+2020-05-03 16:16:56,009 INFO: [SERVER] Loaded server configuration file successfully
+2020-05-03 16:16:56,012 INFO: [foo] Plugin started successfully!
+2020-05-03 16:16:56,012 INFO: [SERVER] Starting WebSocket server on localhost:8765
+2020-05-03 16:19:29,832 INFO: [SERVER] Loaded server configuration file successfully
+2020-05-03 16:19:29,834 INFO: [foo] Plugin started successfully!
+2020-05-03 16:19:29,834 INFO: [SERVER] Starting WebSocket server on localhost:8765
+2020-05-03 16:22:53,264 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 16:22:58,143 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 16:23:24,478 INFO: [SERVER] Loaded server configuration file successfully
+2020-05-03 16:23:24,481 INFO: [foo] Plugin started successfully!
+2020-05-03 16:23:24,481 INFO: [SERVER] Starting WebSocket server on localhost:8765
+2020-05-03 16:24:50,995 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 16:24:59,387 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 16:27:12,283 INFO: [SERVER] Loaded server configuration file successfully
+2020-05-03 16:27:12,285 INFO: [foo] Plugin started successfully!
+2020-05-03 16:27:12,286 INFO: [SERVER] Starting WebSocket server on localhost:8765
+2020-05-03 16:27:26,196 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 16:27:33,387 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 16:27:33,468 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 16:27:37,100 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 16:27:37,156 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 16:27:38,579 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 16:27:38,650 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 16:27:39,355 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 16:27:39,417 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 16:27:39,938 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 16:27:40,021 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 16:27:40,414 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 16:27:40,554 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 16:27:40,901 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 16:27:41,050 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 16:27:42,594 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 16:27:42,651 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 16:28:36,374 INFO: [SERVER] Loaded server configuration file successfully
+2020-05-03 16:28:36,376 INFO: [foo] Plugin started successfully!
+2020-05-03 16:28:36,377 INFO: [SERVER] Starting WebSocket server on localhost:8765
+2020-05-03 16:29:08,686 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 16:29:15,606 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 16:29:15,655 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 16:29:15,866 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 16:29:16,008 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 16:29:16,051 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 16:29:16,108 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 16:29:16,192 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 16:29:16,245 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 16:29:16,354 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 16:29:16,407 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 16:29:16,495 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 16:29:16,546 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 16:29:16,699 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 16:29:16,762 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 16:29:16,816 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 16:29:16,867 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 16:29:17,058 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-03 16:29:17,211 INFO: [SERVER] User 'joe' has been added to the list of connected users.
+2020-05-03 16:29:28,218 INFO: [SERVER] User 'joe' has disconnected.
+2020-05-13 16:32:55,859 INFO: [SERVER] Loaded server configuration file successfully
+2020-05-13 16:32:55,915 INFO: [foo] Plugin started successfully!
+2020-05-13 16:32:55,937 INFO: [SERVER] Starting WebSocket server on localhost:8765
+2020-05-13 16:34:33,041 ERROR: [passwords] Command not found
+2020-05-13 16:34:36,312 ERROR: [passwords] Command not found
+2020-05-13 16:34:39,004 ERROR: [passwords] Invalid syntax
+2020-05-13 16:34:50,329 INFO: [passwords] Passwords enabled for group 'developer'
+2020-05-13 16:35:54,222 INFO: [passwords] Passwords enabled for group 'operator'
+2020-05-13 16:35:57,942 INFO: [passwords] Passwords enabled for group 'observer'
+2020-05-13 16:36:00,550 INFO: [passwords] Passwords enabled for group 'robot'
+2020-05-13 16:36:03,865 INFO: [passwords] Passwords enabled for group 'robot_manager'
+2020-05-13 16:36:54,661 INFO: [passwords] Passwords enabled for group 'robot_manager'
+2020-05-13 16:36:58,952 ERROR: [passwords] Invalid syntax
+2020-05-13 16:37:00,644 ERROR: [passwords] Invalid syntax
+2020-05-13 16:37:04,820 ERROR: [passwords] Could not find user 'joe'
+2020-05-13 16:37:11,872 ERROR: [passwords] Invalid syntax
+2020-05-13 16:37:43,905 INFO: [passwords] Password set successully for user 'joe_furfaro'
+2020-05-13 16:39:09,794 INFO: [passwords] Password set successully for user 'AJ0'
+2020-05-13 16:43:43,730 INFO: [SERVER] Loaded server configuration file successfully
+2020-05-13 16:44:34,127 INFO: [SERVER] Loaded server configuration file successfully
+2020-05-13 16:44:34,128 ERROR: [SERVER] FATAL: Plugin 'rdk' is missing its dependency 'password'
+2020-05-13 16:44:38,614 INFO: [SERVER] Loaded server configuration file successfully
+2020-05-13 16:44:38,617 INFO: [foo] Plugin started successfully!
+2020-05-13 16:44:38,617 INFO: [SERVER] Starting WebSocket server on localhost:8765
+2020-05-13 16:46:35,176 INFO: [SERVER] Loaded server configuration file successfully
+2020-05-13 16:46:35,179 INFO: [foo] Plugin started successfully!
+2020-05-13 16:46:35,180 INFO: [SERVER] Starting WebSocket server on localhost:8765
+2020-05-13 16:46:49,626 INFO: [passwords] Password set successully for user 'joe_furfaro'
+2020-05-13 16:56:18,589 INFO: [rdk] Added robot 'test'
+2020-05-13 16:58:09,439 ERROR: [rdk] Could not add robot
+2020-05-13 16:58:16,056 ERROR: [rdk] Robot 'g' does not exist
+2020-05-13 16:58:19,234 INFO: [rdk] Deleted robot 'test'
+2020-05-13 18:42:12,995 ERROR: [rdk] Command not found
+2020-05-13 18:43:09,041 INFO: [rdk] Added observer 'joe'
+2020-05-13 18:43:10,887 ERROR: [rdk] Could not add observer
+2020-05-13 18:43:16,622 ERROR: [rdk] Could not add observer
+2020-05-13 18:43:21,820 INFO: [rdk] Deleted user 'joe'
+2020-05-13 18:52:32,600 ERROR: [rdk] Command not found
+2020-05-13 18:52:41,210 ERROR: [rdk] Invalid syntax. Try: add [robot|operator|observer|developer|admin] [name] [password]
+2020-05-13 18:53:33,575 ERROR: [rdk] Invalid syntax. Try: add [robot|operator|observer|developer|admin] [name] [private key]
+2020-05-13 18:54:29,560 ERROR: [rdk] Could not add to user list
+2020-05-13 18:54:47,464 ERROR: [rdk] 'joe' does not exist
+2020-05-13 18:54:50,184 INFO: [rdk] Deleted 'AJ0'
+2020-05-13 18:54:54,113 INFO: [rdk] Added 'AJ0'
+2020-05-13 18:55:15,428 ERROR: [rdk] Invalid syntax. Try: add [robot|operator|observer|developer|admin] [name] [private key]
+2020-05-13 18:55:51,535 INFO: [rdk] Added 'joe'
+2020-05-13 18:56:58,864 ERROR: [rdk] Could not add to user list
+2020-05-13 18:57:38,339 INFO: [rdk] Added 'admin'
+2020-05-13 18:57:47,407 ERROR: [rdk] Invalid syntax. Try: add [robot|operator|observer|developer|admin] [name] [private key]
+2020-05-14 14:56:01,801 INFO: [SERVER] Loaded server configuration file successfully
+2020-05-14 14:56:07,924 INFO: [SERVER] Loaded server configuration file successfully
+2020-05-14 14:56:07,932 INFO: [foo] Plugin started successfully!
+2020-05-14 14:56:07,943 INFO: [SERVER] Starting WebSocket server on localhost:8765
+2020-05-14 14:56:22,497 INFO: [SERVER] Loaded server configuration file successfully
+2020-05-14 14:56:22,499 INFO: [rdk] Starting RDK v3.0.0 development server
+2020-05-14 14:56:22,499 INFO: [foo] Plugin started successfully!
+2020-05-14 14:56:22,500 INFO: [SERVER] Starting WebSocket server on localhost:8765
+2020-05-14 14:58:42,664 INFO: [SERVER] Loaded server configuration file successfully
+2020-05-14 14:58:42,667 INFO: [sessions] Sessions loaded successully
+2020-05-14 14:58:42,668 INFO: [foo] Plugin started successfully!
+2020-05-14 14:58:42,668 INFO: [passwords] Passwords loaded successully
+2020-05-14 14:58:42,668 INFO: [SERVER] Starting WebSocket server on localhost:8765
+2020-05-14 14:59:11,166 INFO: [SERVER] Loaded server configuration file successfully
+2020-05-14 14:59:11,169 INFO: [rdk] Starting RDK v3.0.0 development server
+2020-05-14 14:59:11,169 INFO: [sessions] Sessions loaded successully
+2020-05-14 14:59:11,169 INFO: [foo] Plugin started successfully!
+2020-05-14 14:59:11,170 INFO: [passwords] Passwords loaded successully
+2020-05-14 14:59:11,170 INFO: [SERVER] Starting WebSocket server on localhost:8765
+2020-05-14 14:59:34,809 INFO: [SERVER] Loaded server configuration file successfully
+2020-05-14 14:59:34,812 INFO: [rdk] RDK v3.0.0 development server plugin loaded successfully
+2020-05-14 14:59:34,812 INFO: [sessions] Sessions loaded successully
+2020-05-14 14:59:34,812 INFO: [foo] Plugin started successfully!
+2020-05-14 14:59:34,813 INFO: [passwords] Passwords loaded successully
+2020-05-14 14:59:34,813 INFO: [SERVER] Starting WebSocket server on localhost:8765
