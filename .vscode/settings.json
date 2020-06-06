@@ -1,0 +1,4 @@
+{
+    "python.formatting.provider": "autopep8",
+    "python.pythonPath": "/home/joe/miniconda3/envs/django/bin/python"
+}

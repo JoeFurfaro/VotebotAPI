@@ -1,0 +1,9 @@
+2020-05-17 13:43:49,278 INFO: [passwords] Passwords enabled for group 'host'
+2020-05-17 13:43:52,346 INFO: [passwords] Passwords enabled for group 'voter'
+2020-05-17 13:44:39,417 INFO: [passwords] Passwords enabled for group 'observer'
+2020-05-18 18:15:48,719 INFO: [SERVER] Loaded server configuration file successfully
+2020-05-18 18:15:48,726 INFO: [sessions] Sessions loaded successully
+2020-05-18 18:15:48,726 INFO: [votebot] Passwords loaded successully
+2020-05-18 18:15:48,726 INFO: [foo] Plugin started successfully!
+2020-05-18 18:15:48,727 INFO: [passwords] Passwords loaded successully
+2020-05-18 18:15:48,727 INFO: [SERVER] Starting WebSocket server on localhost:9991

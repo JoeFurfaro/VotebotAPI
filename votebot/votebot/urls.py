@@ -15,6 +15,12 @@ Including another URLconf
 """
 from django.urls import path, include
 
+from api.models import *
+
 urlpatterns = [
     path('api/', include('api.urls')),
 ]
+
+print("Resetting child servers...")
+for server in Server.objects.all():
+    server.reset()

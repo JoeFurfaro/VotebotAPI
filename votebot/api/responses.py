@@ -13,3 +13,5 @@ def ERROR_BAD_PUT_DATA(errors={}):
     return JsonResponse({"status": "ERROR_BAD_PUT_DATA", "message": "Invalid PUT input data", "errors": errors}, status="400")
 def ERROR_BAD_POST_DATA(errors={}):
     return JsonResponse({"status": "ERROR_BAD_POST_DATA", "message": "Invalid POST input data", "errors": errors}, status="400")
+def ERROR_BAD_DELETE_DATA(errors={}):
+    return JsonResponse({"status": "ERROR_BAD_DELETE_DATA", "message": "Invalid DELETE input data", "errors": errors}, status="400")

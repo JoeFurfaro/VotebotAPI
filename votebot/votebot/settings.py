@@ -121,4 +121,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+PYTHON_PATH = '/home/joe/miniconda3/envs/django/bin/python'
+
 ROOT_SECRET = '12345678'
